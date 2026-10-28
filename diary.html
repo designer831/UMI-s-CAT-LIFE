@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日常日記｜CAT CHRONICLES · UMI's CAT LIFE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* Page Specific Styles for Diary */
+.timeline {
+  position: relative;
+  max-width: 860px;
+  margin: 40px auto 0;
+  padding-left: 36px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 12px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-mid), rgba(212,175,55,0.1));
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.diary-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 40px;
+  box-shadow: var(--glass-shadow);
+  transition: all .3s ease;
+}
+
+.diary-card:hover {
+  transform: translateX(6px);
+  border-color: var(--gold-light);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.diary-marker {
+  position: absolute;
+  left: -32px;
+  top: 32px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-base);
+  border: 3px solid var(--gold-mid);
+  box-shadow: 0 0 12px var(--gold-light);
+}
+
+.diary-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.diary-date {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: var(--gold-light);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+.diary-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--text-muted);
+}
+
+.diary-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.diary-body {
+  color: var(--text-muted);
+  line-height: 1.85;
+  font-size: 15px;
+}
+
+.diary-footer {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.reaction-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .2s ease;
+}
+
+.reaction-btn:hover {
+  color: var(--gold-light);
+  transform: scale(1.08);
+}
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <a href="index.html" class="nav-logo">🐾</a>
+      <a href="index.html" class="nav-title">UMI'S REALM</a>
+    </div>
+    <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">首頁 Home</a></li>
+      <li><a href="about.html">關於烏米 About</a></li>
+      <li><a href="gallery.html">寫真相簿 Gallery</a></li>
+      <li><a href="diary.html" class="active">日常日記 Diary</a></li>
+      <li><a href="downloads.html" class="nav-badge-download">下載專區 📥</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <span class="page-tag">CAT CHRONICLES · 生活隨筆</span>
+      <h1 class="page-title">烏米的暗夜日誌</h1>
+      <p class="page-desc">記錄傲嬌黑貓烏米與鏟屎官的鬥智鬥勇、拍屁屁修煉歷程與令人哭笑不得的萌趣日常。</p>
+    </div>
+
+    <div class="container">
+      
+      <div class="timeline">
+        
+        <!-- Diary Entry 4 -->
+        <div class="diary-card">
+          <div class="diary-marker"></div>
+          <div class="diary-meta">
+            <span class="diary-date">✦ 2026.10.28 · WEDNESDAY</span>
+            <div class="diary-badges">
+              <span class="badge">🍑 拍屁屁研究</span>
+              <span class="badge">氣溫 24°C</span>
+            </div>
+          </div>
+          <h2 class="diary-title">「拍屁屁是維持生命運轉的燃料」</h2>
+          <div class="diary-body">
+            今天下班一打開門，烏米不是像別人家貓咪一樣喵喵叫討罐罐，而是直接一屁股側躺在玄關地毯上，把尾巴高高豎起。<br>
+            只要我的手一停下來，他就會發出極其不滿的「嘖」聲，外加用黑黝黝的小腦袋頂我的手背。<br>
+            整整拍了 15 分鐘，呼嚕聲大到像發動中的重型機車引擎，這隻米克斯對拍屁屁的執念到底有多深啊！
+          </div>
+          <div class="diary-footer">
+            <span>奴才筆記 · 拍屁屁手法評分：99 分</span>
+            <button class="reaction-btn" onclick="react(this)">🐾 <span>同感讚 (48)</span></button>
+          </div>
+        </div>
+
+        <!-- Diary Entry 3 -->
+        <div class="diary-card">
+          <div class="diary-marker"></div>
+          <div class="diary-meta">
+            <span class="diary-date">✦ 2026.09.15 · TUESDAY</span>
+            <div class="diary-badges">
+              <span class="badge">🖤 完美隱身術</span>
+              <span class="badge">晴朗天</span>
+            </div>
+          </div>
+          <h2 class="diary-title">在黑色的椅子上找黑貓的絕望</h2>
+          <div class="diary-body">
+            晚上準備吃晚餐時，找遍全家都沒看到烏米的身影，甚至趴在床底找了十分鐘。<br>
+            正當我緊張地拿肉泥準備敲碗時，我的黑皮電競椅上突然睜開了兩顆黃綠色的琥珀大眼睛，靜靜地看著我演獨角戲...<br>
+            這傢伙把自己完全融入在黑色皮革裡，簡直是自帶光學迷彩！
+          </div>
+          <div class="diary-footer">
+            <span>奴才筆記 · 尋貓技能需要再加強</span>
+            <button class="reaction-btn" onclick="react(this)">🐾 <span>同感讚 (72)</span></button>
+          </div>
+        </div>
+
+        <!-- Diary Entry 2 -->
+        <div class="diary-card">
+          <div class="diary-marker"></div>
+          <div class="diary-meta">
+            <span class="diary-date">✦ 2026.07.03 · FRIDAY</span>
+            <div class="diary-badges">
+              <span class="badge">📦 紙箱霸主</span>
+              <span class="badge">雷雨午後</span>
+            </div>
+          </div>
+          <h2 class="diary-title">三千元頂級貓抓板 vs 網購免費紙箱</h2>
+          <div class="diary-body">
+            為了給 4 歲的烏米最好的生活品質，特別訂購了一座實木手工打磨的多功能貓跳台。<br>
+            花了一小時組裝完成，烏米走過來聞了聞新跳台，然後毫不猶豫地鑽進了裝跳台的破紙箱裡，並發出幸福的呼嚕聲，直到天黑都不肯出來。<br>
+            看來在黑貓帝國的審美裡，瓦楞紙才是至高無上的皇室寢宮。
+          </div>
+          <div class="diary-footer">
+            <span>奴才筆記 · 荷包在哭泣</span>
+            <button class="reaction-btn" onclick="react(this)">🐾 <span>同感讚 (115)</span></button>
+          </div>
+        </div>
+
+        <!-- Diary Entry 1 -->
+        <div class="diary-card">
+          <div class="diary-marker"></div>
+          <div class="diary-meta">
+            <span class="diary-date">✦ 2022.05.17 · MEMORY</span>
+            <div class="diary-badges">
+              <span class="badge">🎂 紀念日</span>
+              <span class="badge">初遇之日</span>
+            </div>
+          </div>
+          <h2 class="diary-title">那一天的初遇：歡迎你成為家的一份子</h2>
+          <div class="diary-body">
+            四年前的今天，2022 年 5 月 17 日，小小一隻的黑米克斯幼貓來到了家裡。<br>
+            因為全身漆黑如墨，取名為「烏米 (UMI)」。那時的你還只有巴掌大，走起路來跌跌撞撞，卻已經懂得鑽進被窩裡貼著我的腳踝睡覺。<br>
+            轉眼間四年過去了，謝謝你陪伴的每一天，給了我們數不盡的溫暖與歡笑！
+          </div>
+          <div class="diary-footer">
+            <span>烏米紀念日 · 永遠的寶貝小王子</span>
+            <button class="reaction-btn" onclick="react(this)">🐾 <span>同感讚 (280)</span></button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">首頁</a>
+      <a href="about.html">關於烏米</a>
+      <a href="gallery.html">寫真相簿</a>
+      <a href="diary.html">日常日記</a>
+      <a href="downloads.html">下載專區</a>
+    </div>
+    <div class="footer-brand">✦ UMI'S CAT LIFE · 烏米的小王國 ✦</div>
+    <div style="font-size: 11px; color: var(--text-dim); margin-top: 8px;">
+      © 2026 DESIGNED WITH LOVE FOR UMI. ALL RIGHTS RESERVED.
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const links = document.getElementById('navLinks');
+      links.classList.toggle('open');
+    }
+
+    function react(btn) {
+      const span = btn.querySelector('span');
+      let match = span.textContent.match(/\d+/);
+      if (match) {
+        let count = parseInt(match[0]) + 1;
+        span.textContent = `同感讚 (${count})`;
+        btn.style.color = 'var(--gold-light)';
+      }
+    }
+  </script>
+</body>
+</html>

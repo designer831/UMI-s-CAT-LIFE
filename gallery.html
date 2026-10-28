@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寫真相簿｜ROYAL GALLERY · UMI's CAT LIFE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* Page Specific Styles for Gallery */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--gold-border);
+  color: var(--text-muted);
+  padding: 8px 22px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .25s ease;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--gold-gradient);
+  color: #0A0B0E;
+  font-weight: 700;
+  border-color: var(--gold-mid);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.photo-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  transition: all .35s ease;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-light);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.2);
+}
+
+.photo-img-wrap {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  background: #151822;
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.photo-card:hover .photo-img {
+  transform: scale(1.08);
+}
+
+.photo-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(10, 11, 14, 0.85);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  letter-spacing: 0.05em;
+}
+
+.photo-info {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(18, 20, 28, 0.9);
+}
+
+.photo-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.photo-date {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.like-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ff6b81;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.like-btn:hover {
+  background: rgba(255, 107, 129, 0.15);
+  border-color: rgba(255, 107, 129, 0.4);
+  transform: scale(1.05);
+}
+
+/* Lightbox Modal */
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(5, 6, 8, 0.92);
+  backdrop-filter: blur(20px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-content {
+  max-width: 850px;
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-mid);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  position: relative;
+  text-align: center;
+}
+
+.lightbox-img {
+  width: 100%;
+  max-height: 550px;
+  object-fit: contain;
+  background: #0A0B0E;
+}
+
+.lightbox-caption {
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 28px;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color .2s ease;
+}
+
+.lightbox-close:hover {
+  color: var(--gold-light);
+}
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <a href="index.html" class="nav-logo">🐾</a>
+      <a href="index.html" class="nav-title">UMI'S REALM</a>
+    </div>
+    <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">首頁 Home</a></li>
+      <li><a href="about.html">關於烏米 About</a></li>
+      <li><a href="gallery.html" class="active">寫真相簿 Gallery</a></li>
+      <li><a href="diary.html">日常日記 Diary</a></li>
+      <li><a href="downloads.html" class="nav-badge-download">下載專區 📥</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <span class="page-tag">GALLERY EXHIBITION · 典藏展覽</span>
+      <h1 class="page-title">烏米的寫真相簿</h1>
+      <p class="page-desc">每一張照片都是暗夜貴族的瞬間定格。點擊照片可開啟全螢幕高畫質鑑賞，別忘了給烏米點個愛心！</p>
+    </div>
+
+    <div class="container">
+      
+      <!-- FILTER BUTTONS -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">全部寫真 (ALL)</button>
+        <button class="filter-btn" onclick="filterGallery('sleep', this)">💤 翻肚與睡姿</button>
+        <button class="filter-btn" onclick="filterGallery('panther', this)">👑 暗夜黑豹姿態</button>
+        <button class="filter-btn" onclick="filterGallery('pets', this)">🍑 拍屁屁日常</button>
+      </div>
+
+      <!-- GALLERY GRID -->
+      <div class="gallery-grid" id="galleryGrid">
+        
+        <!-- Photo 1 (Local Real Photo) -->
+        <div class="photo-card" data-category="sleep" onclick="openLightbox('睡到翻肚也很安心 🐾', 'image/睡到翻肚也很安心.png')">
+          <div class="photo-img-wrap">
+            <span class="photo-tag">💤 翻肚與睡姿</span>
+            <img src="image/睡到翻肚也很安心.png" class="photo-img" alt="睡到翻肚也很安心">
+          </div>
+          <div class="photo-info">
+            <div>
+              <div class="photo-title">睡到翻肚也很安心</div>
+              <div class="photo-date">2026 · 烏米專屬寫真</div>
+            </div>
+            <button class="like-btn" onclick="event.stopPropagation(); addLike(this)">❤️ <span>320</span></button>
+          </div>
+        </div>
+
+        <!-- Photo 2 (Local Real Photo) -->
+        <div class="photo-card" data-category="panther" onclick="openLightbox('本喵在思考貓生 👑', 'image/本喵在思考貓生.png')">
+          <div class="photo-img-wrap">
+            <span class="photo-tag">👑 暗夜黑豹</span>
+            <img src="image/本喵在思考貓生.png" class="photo-img" alt="本喵在思考貓生">
+          </div>
+          <div class="photo-info">
+            <div>
+              <div class="photo-title">本喵在思考貓生</div>
+              <div class="photo-date">2026 · 烏米專屬寫真</div>
+            </div>
+            <button class="like-btn" onclick="event.stopPropagation(); addLike(this)">❤️ <span>520</span></button>
+          </div>
+        </div>
+
+        <!-- Photo 3 (Local Real Photo) -->
+        <div class="photo-card" data-category="pets" onclick="openLightbox('吃飽飽最開心 🥫', 'image/吃飽飽最開心.png')">
+          <div class="photo-img-wrap">
+            <span class="photo-tag">🍑 拍屁屁日常</span>
+            <img src="image/吃飽飽最開心.png" class="photo-img" alt="吃飽飽最開心">
+          </div>
+          <div class="photo-info">
+            <div>
+              <div class="photo-title">吃飽飽最開心</div>
+              <div class="photo-date">2026 · 烏米專屬寫真</div>
+            </div>
+            <button class="like-btn" onclick="event.stopPropagation(); addLike(this)">❤️ <span>488</span></button>
+          </div>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="photo-card" data-category="panther" onclick="openLightbox('客廳地毯上的黑豹潛行', 'https://images.unsplash.com/photo-1503777119540-ce54b422baff?q=80&w=1200&auto=format&fit=crop')">
+          <div class="photo-img-wrap">
+            <span class="photo-tag">👑 暗夜黑豹</span>
+            <img src="https://images.unsplash.com/photo-1503777119540-ce54b422baff?q=80&w=800&auto=format&fit=crop" class="photo-img" alt="黑貓優雅趴坐">
+          </div>
+          <div class="photo-info">
+            <div>
+              <div class="photo-title">黑豹潛行姿態</div>
+              <div class="photo-date">2026.07 · 獵手出巡</div>
+            </div>
+            <button class="like-btn" onclick="event.stopPropagation(); addLike(this)">❤️ <span>120</span></button>
+          </div>
+        </div>
+
+        <!-- Photo 5 -->
+        <div class="photo-card" data-category="sleep" onclick="openLightbox('完美的黑貓羊角麵包捲', 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1200&auto=format&fit=crop')">
+          <div class="photo-img-wrap">
+            <span class="photo-tag">💤 翻肚與睡姿</span>
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=800&auto=format&fit=crop" class="photo-img" alt="睡成一團">
+          </div>
+          <div class="photo-info">
+            <div>
+              <div class="photo-title">黑貓可頌球</div>
+              <div class="photo-date">2026.06 · 冷氣房安眠</div>
+            </div>
+            <button class="like-btn" onclick="event.stopPropagation(); addLike(this)">❤️ <span>188</span></button>
+          </div>
+        </div>
+
+        <!-- Photo 6 -->
+        <div class="photo-card" data-category="pets" onclick="openLightbox('奴才你今天拍夠了沒？', 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?q=80&w=1200&auto=format&fit=crop')">
+          <div class="photo-img-wrap">
+            <span class="photo-tag">🍑 拍屁屁日常</span>
+            <img src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?q=80&w=800&auto=format&fit=crop" class="photo-img" alt="傲嬌回頭">
+          </div>
+          <div class="photo-info">
+            <div>
+              <div class="photo-title">再拍五分鐘好嗎</div>
+              <div class="photo-date">2026.05 · 滿 4 歲生日照</div>
+            </div>
+            <button class="like-btn" onclick="event.stopPropagation(); addLike(this)">❤️ <span>302</span></button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightboxImg" class="lightbox-img" src="" alt="烏米寫真放大">
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">首頁</a>
+      <a href="about.html">關於烏米</a>
+      <a href="gallery.html">寫真相簿</a>
+      <a href="diary.html">日常日記</a>
+      <a href="downloads.html">下載專區</a>
+    </div>
+    <div class="footer-brand">✦ UMI'S CAT LIFE · 烏米的小王國 ✦</div>
+    <div style="font-size: 11px; color: var(--text-dim); margin-top: 8px;">
+      © 2026 DESIGNED WITH LOVE FOR UMI. ALL RIGHTS RESERVED.
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const links = document.getElementById('navLinks');
+      links.classList.toggle('open');
+    }
+
+    function filterGallery(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.photo-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function addLike(btn) {
+      const span = btn.querySelector('span');
+      let count = parseInt(span.textContent);
+      span.textContent = count + 1;
+      btn.style.transform = 'scale(1.2)';
+      setTimeout(() => { btn.style.transform = 'scale(1)'; }, 200);
+    }
+
+    function openLightbox(caption, imgSrc) {
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('lightboxCaption').textContent = caption;
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>下載專區｜ROYAL DOWNLOADS · UMI's CAT LIFE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* Page Specific Styles for Downloads */
+.download-section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  color: var(--gold-light);
+  margin: 48px 0 24px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding-bottom: 12px;
+}
+
+/* Mobile Wallpaper Grid (9:16) */
+.wallpaper-grid-mobile {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+.wp-card-mobile {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  transition: all .35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.wp-card-mobile:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-light);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.25);
+}
+
+.wp-preview-mobile {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  position: relative;
+  overflow: hidden;
+  background: #11141c;
+}
+
+.wp-preview-mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.wp-card-mobile:hover .wp-preview-mobile img {
+  transform: scale(1.06);
+}
+
+.wp-res-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(10, 11, 14, 0.85);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.wp-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wp-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* Desktop Wallpaper Grid (16:9) */
+.wallpaper-grid-desktop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.wp-preview-desktop {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: #11141c;
+}
+
+.wp-preview-desktop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.wp-card-desktop:hover .wp-preview-desktop img {
+  transform: scale(1.06);
+}
+
+/* Avatars & Stickers */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.avatar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  transition: all .3s ease;
+}
+
+.avatar-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-light);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+}
+
+.avatar-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-mid);
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.avatar-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+/* Guide Book Card */
+.guide-card {
+  background: linear-gradient(135deg, rgba(26, 29, 42, 0.85), rgba(18, 20, 28, 0.95));
+  border: 1px solid var(--gold-mid);
+  border-radius: 20px;
+  padding: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 24px;
+  box-shadow: var(--glass-shadow);
+  flex-wrap: wrap;
+}
+
+.guide-icon {
+  font-size: 48px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid var(--gold-border);
+  width: 80px; height: 80px;
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <a href="index.html" class="nav-logo">🐾</a>
+      <a href="index.html" class="nav-title">UMI'S REALM</a>
+    </div>
+    <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">首頁 Home</a></li>
+      <li><a href="about.html">關於烏米 About</a></li>
+      <li><a href="gallery.html">寫真相簿 Gallery</a></li>
+      <li><a href="diary.html">日常日記 Diary</a></li>
+      <li><a href="downloads.html" class="active nav-badge-download">下載專區 📥</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <span class="page-tag">ROYAL GOODIES · 皇室福利</span>
+      <h1 class="page-title">烏米專屬下載專區</h1>
+      <p class="page-desc">送給所有喜歡烏米的朋友！這裡提供高清手機桌布、電腦 4K 桌布、社群萌系頭貼與黑貓拍屁屁飼養指南，完全免費下載收藏。</p>
+    </div>
+
+    <div class="container">
+      
+      <!-- SECTION 1: MOBILE WALLPAPERS -->
+      <h2 class="download-section-title">📱 4K 手機直式桌布 (Mobile Wallpapers)</h2>
+      <div class="wallpaper-grid-mobile">
+        <!-- Wallpaper 1 (Real Photo) -->
+        <div class="wp-card-mobile">
+          <div class="wp-preview-mobile">
+            <span class="wp-res-tag">HD · 9:16</span>
+            <img src="image/本喵在思考貓生.png" alt="烏米思考貓生桌布">
+          </div>
+          <div class="wp-info">
+            <h3 class="wp-title">✦ 曜黑沉思 · 思考貓生款</h3>
+            <p style="font-size:12px; color:var(--text-dim); margin:0;">本機真實烏米寫真 · 適用手機鎖定畫面</p>
+            <a href="image/本喵在思考貓生.png" target="_blank" download="烏米-本喵在思考貓生.png" class="btn btn-primary" style="width:100%; font-size:12px;">📥 下載烏米原圖</a>
+          </div>
+        </div>
+
+        <!-- Wallpaper 2 (Real Photo) -->
+        <div class="wp-card-mobile">
+          <div class="wp-preview-mobile">
+            <span class="wp-res-tag">HD · 9:16</span>
+            <img src="image/睡到翻肚也很安心.png" alt="烏米睡到翻肚桌布">
+          </div>
+          <div class="wp-info">
+            <h3 class="wp-title">✦ 翻肚融化 · 安心熟睡款</h3>
+            <p style="font-size:12px; color:var(--text-dim); margin:0;">本機真實烏米寫真 · 解鎖瞬間治癒好心情</p>
+            <a href="image/睡到翻肚也很安心.png" target="_blank" download="烏米-睡到翻肚也很安心.png" class="btn btn-primary" style="width:100%; font-size:12px;">📥 下載烏米原圖</a>
+          </div>
+        </div>
+
+        <!-- Wallpaper 3 (Real Photo) -->
+        <div class="wp-card-mobile">
+          <div class="wp-preview-mobile">
+            <span class="wp-res-tag">HD · 9:16</span>
+            <img src="image/吃飽飽最開心.png" alt="烏米吃飽飽桌布">
+          </div>
+          <div class="wp-info">
+            <h3 class="wp-title">✦ 罐罐滿足 · 吃飽最開心款</h3>
+            <p style="font-size:12px; color:var(--text-dim); margin:0;">本機真實烏米寫真 · 元氣滿滿陪伴每一天</p>
+            <a href="image/吃飽飽最開心.png" target="_blank" download="烏米-吃飽飽最開心.png" class="btn btn-primary" style="width:100%; font-size:12px;">📥 下載烏米原圖</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SECTION 2: DESKTOP WALLPAPERS -->
+      <h2 class="download-section-title">💻 寬螢幕電腦桌布 (Desktop Wallpapers)</h2>
+      <div class="wallpaper-grid-desktop">
+        
+        <!-- Desktop WP 1 -->
+        <div class="wp-card-mobile wp-card-desktop">
+          <div class="wp-preview-desktop">
+            <span class="wp-res-tag">3840 x 2160 UHD</span>
+            <img src="https://images.unsplash.com/photo-1503777119540-ce54b422baff?q=80&w=1200&auto=format&fit=crop" alt="寬螢幕烏米桌布">
+          </div>
+          <div class="wp-info">
+            <h3 class="wp-title">✦ 皇室靜謐 · 窗邊日光全景款</h3>
+            <p style="font-size:12px; color:var(--text-dim); margin:0;">為你的工作桌面注入奢華黑金氛圍</p>
+            <a href="https://images.unsplash.com/photo-1503777119540-ce54b422baff?q=80&w=2400&auto=format&fit=crop" target="_blank" download="Umi-Desktop-4K.jpg" class="btn btn-primary" style="width:100%; font-size:12px;">📥 下載 4K 電腦桌布</a>
+          </div>
+        </div>
+
+        <!-- Desktop WP 2 -->
+        <div class="wp-card-mobile wp-card-desktop">
+          <div class="wp-preview-desktop">
+            <span class="wp-res-tag">3840 x 2160 UHD</span>
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=1200&auto=format&fit=crop" alt="黑貓可頌球桌布">
+          </div>
+          <div class="wp-info">
+            <h3 class="wp-title">✦ 黑貓可頌 · 療癒午睡全景款</h3>
+            <p style="font-size:12px; color:var(--text-dim); margin:0;">辦公疲累時看一眼，瞬間吸貓充電</p>
+            <a href="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=2400&auto=format&fit=crop" target="_blank" download="Umi-Desktop-Sleep.jpg" class="btn btn-primary" style="width:100%; font-size:12px;">📥 下載 4K 電腦桌布</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SECTION 3: STICKERS & AVATARS -->
+      <h2 class="download-section-title">🐱 烏米社群表情包與頭貼 (Avatars & Stickers)</h2>
+      <div class="avatar-grid">
+        <div class="avatar-card">
+          <div class="avatar-img">👀</div>
+          <div class="avatar-title">暗中觀察</div>
+          <span style="font-size:11px; color:var(--gold-mid);">適合 Discord / LINE</span>
+        </div>
+        <div class="avatar-card">
+          <div class="avatar-img">🍑</div>
+          <div class="avatar-title">拍屁屁續杯</div>
+          <span style="font-size:11px; color:var(--gold-mid);">日常催促專用</span>
+        </div>
+        <div class="avatar-card">
+          <div class="avatar-img">🥫</div>
+          <div class="avatar-title">罐罐呢？</div>
+          <span style="font-size:11px; color:var(--gold-mid);">討食討摸神器</span>
+        </div>
+        <div class="avatar-card">
+          <div class="avatar-img">👑</div>
+          <div class="avatar-title">烏米大帝</div>
+          <span style="font-size:11px; color:var(--gold-mid);">霸氣尊貴頭像</span>
+        </div>
+      </div>
+
+      <!-- SECTION 4: GUIDE BOOK -->
+      <div class="guide-card">
+        <div style="display:flex; align-items:center; gap:20px;">
+          <div class="guide-icon">📜</div>
+          <div>
+            <h3 style="margin:0 0 8px; font-size:20px; color:var(--gold-light);">《黑貓皇室侍奉指南 ＆ 拍屁屁技巧秘笈》</h3>
+            <p style="margin:0; font-size:14px; color:var(--text-muted); max-width:540px;">
+              由烏米首席奴才親自整理：黑貓拍照對焦技巧、穴位拍屁屁力道控制、罐罐開罐禮儀手冊（PDF 數位版）。
+            </p>
+          </div>
+        </div>
+        <a href="about.html" class="btn btn-primary" onclick="alert('《黑貓拍屁屁秘笈》已為你下載！祝拍屁屁愉快 🐾');">📥 領取完整指南 PDF</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">首頁</a>
+      <a href="about.html">關於烏米</a>
+      <a href="gallery.html">寫真相簿</a>
+      <a href="diary.html">日常日記</a>
+      <a href="downloads.html">下載專區</a>
+    </div>
+    <div class="footer-brand">✦ UMI'S CAT LIFE · 烏米的小王國 ✦</div>
+    <div style="font-size: 11px; color: var(--text-dim); margin-top: 8px;">
+      © 2026 DESIGNED WITH LOVE FOR UMI. ALL RIGHTS RESERVED.
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const links = document.getElementById('navLinks');
+      links.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

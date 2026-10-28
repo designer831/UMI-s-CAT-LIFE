@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
 :root{
   --bg-base:#0A0B0E;
@@ -778,15 +779,18 @@ footer{
 
   <!-- NAV -->
   <nav class="nav">
-    <div class="nav-logo">🐾</div>
-    <ul class="nav-links">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">About Umi</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#daily">Daily Life</a></li>
-      <li><a href="#guestbook">Guestbook</a></li>
+    <div class="nav-brand">
+      <a href="index.html" class="nav-logo">🐾</a>
+      <a href="index.html" class="nav-title">UMI'S REALM</a>
+    </div>
+    <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">首頁 Home</a></li>
+      <li><a href="about.html">關於烏米 About</a></li>
+      <li><a href="gallery.html">寫真相簿 Gallery</a></li>
+      <li><a href="diary.html">日常日記 Diary</a></li>
+      <li><a href="downloads.html" class="nav-badge-download">下載專區 📥</a></li>
     </ul>
-    <div class="nav-face"></div>
   </nav>
 
   <!-- HERO -->
@@ -817,6 +821,53 @@ footer{
         <div class="p-row"><span class="picon">🐟</span><span class="pk">品種</span><span class="pv">米克斯</span></div>
         <div class="p-row"><span class="picon">🖤</span><span class="pk">毛色</span><span class="pv">曜石極黑</span></div>
       </div>
+    </div>
+  </section>
+
+  <!-- MULTI-PAGE EXPLORE PORTAL -->
+  <section class="container" style="margin-top: 50px; margin-bottom: 20px;">
+    <div style="text-align: center; margin-bottom: 32px;">
+      <span class="page-tag">EXPLORE THE REALM ✦ 多頁探索</span>
+      <h2 style="font-family:'Cinzel',serif; color:var(--gold-light); font-size:26px; margin: 8px 0;">烏米王國 · 專屬分頁指南</h2>
+      <p style="color:var(--text-muted); font-size:14px; margin:0 auto; max-width:600px;">探索更多關於烏米的秘密檔案、高清寫真相簿、鏟屎官日常手記與免費 4K 桌布福利！</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px;">
+      <a href="about.html" class="card" style="text-decoration:none; display:flex; flex-direction:column; justify-content:space-between; padding: 24px;">
+        <div>
+          <div style="font-size: 32px; margin-bottom: 10px;">👑</div>
+          <h3 style="font-family:'Cinzel',serif; color:var(--gold-light); margin:0 0 8px; font-size:17px;">關於烏米 About</h3>
+          <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">查看 2022 年出生至今的身世物語、性格數據指標與一日皇室作息表。</p>
+        </div>
+        <span style="font-size:12px; font-weight:700; color:var(--gold-mid); margin-top:14px;">前往檔案庫 ➔</span>
+      </a>
+
+      <a href="gallery.html" class="card" style="text-decoration:none; display:flex; flex-direction:column; justify-content:space-between; padding: 24px;">
+        <div>
+          <div style="font-size: 32px; margin-bottom: 10px;">📷</div>
+          <h3 style="font-family:'Cinzel',serif; color:var(--gold-light); margin:0 0 8px; font-size:17px;">寫真相簿 Gallery</h3>
+          <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">典藏寫真攝影展，支援分類篩選、點圖全螢幕燈箱放大與愛心按讚！</p>
+        </div>
+        <span style="font-size:12px; font-weight:700; color:var(--gold-mid); margin-top:14px;">觀賞藝廊 ➔</span>
+      </a>
+
+      <a href="diary.html" class="card" style="text-decoration:none; display:flex; flex-direction:column; justify-content:space-between; padding: 24px;">
+        <div>
+          <div style="font-size: 32px; margin-bottom: 10px;">📖</div>
+          <h3 style="font-family:'Cinzel',serif; color:var(--gold-light); margin:0 0 8px; font-size:17px;">日常日記 Diary</h3>
+          <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">拍屁屁成癮紀錄、黑貓隱形術與紙箱爭奪戰，爆笑真實生活記錄。</p>
+        </div>
+        <span style="font-size:12px; font-weight:700; color:var(--gold-mid); margin-top:14px;">閱讀日記 ➔</span>
+      </a>
+
+      <a href="downloads.html" class="card" style="text-decoration:none; display:flex; flex-direction:column; justify-content:space-between; padding: 24px; border-color:var(--gold-mid); background:linear-gradient(135deg, rgba(26,29,42,0.9), rgba(18,20,28,0.95));">
+        <div>
+          <div style="font-size: 32px; margin-bottom: 10px;">📥</div>
+          <h3 style="font-family:'Cinzel',serif; color:var(--gold-light); margin:0 0 8px; font-size:17px;">下載專區 Downloads</h3>
+          <p style="font-size:13px; color:var(--text-muted); line-height:1.6; margin:0;">免費下載 4K 手機直式桌布、電腦寬螢幕桌布、烏米社群表情包與飼育秘笈！</p>
+        </div>
+        <span style="font-size:12px; font-weight:700; color:var(--gold-light); margin-top:14px;">免費下載桌布 ➔</span>
+      </a>
     </div>
   </section>
 
@@ -941,19 +992,24 @@ footer{
 
   <!-- FOOTER -->
   <footer id="contact">
-    ✦ © 2026 UMI'S CAT LIFE · NOIR & GOLD LUXURY EDITION ✦
+    <div class="footer-nav">
+      <a href="index.html">首頁</a>
+      <a href="about.html">關於烏米</a>
+      <a href="gallery.html">寫真相簿</a>
+      <a href="diary.html">日常日記</a>
+      <a href="downloads.html">下載專區</a>
+    </div>
+    <div class="footer-brand">✦ UMI'S CAT LIFE · 烏米的小王國 ✦</div>
+    <div style="font-size: 11px; color: var(--text-dim); margin-top: 8px;">
+      © 2026 DESIGNED WITH LOVE FOR UMI. ALL RIGHTS RESERVED.
+    </div>
   </footer>
 
 <script>
-  const links = document.querySelectorAll('.nav-links a');
-  const sections = ['home','about','gallery','daily','guestbook'].map(id => document.getElementById(id));
-  window.addEventListener('scroll', () => {
-    let current = sections[0].id;
-    sections.forEach(sec => {
-      if(window.scrollY + 100 >= sec.offsetTop) current = sec.id;
-    });
-    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-  });
+  function toggleNav() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
 </script>
 
 
